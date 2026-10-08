@@ -23,6 +23,5 @@ pandas>=2.0.0
 # ROS data processing (if needed)
 rosbags
 
-# Note for Kelechi (<8GB RAM):
-# Install only numpy, matplotlib, opencv-python, pillow, seaborn, pandas locally
-# Run ultralytics (YOLOv11) training in Google Colab only
+# Note: Heavy ML libraries (ultralytics, torch) can be run in Google Colab
+# to save local resources. Install only what you need for your component.
