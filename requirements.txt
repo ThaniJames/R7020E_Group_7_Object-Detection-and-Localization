@@ -1,20 +1,28 @@
-# Minimal local dependencies for <8GB RAM
-# All training/inference runs in Google Colab
+# Team Requirements - Fire Extinguisher Detection Project
+# Combined dependencies for all team members
 
-# For local code editing and light visualization only
-numpy>=1.24.0
+# Core numerical and visualization
+numpy>=2.4.0
 matplotlib>=3.7.0
+opencv-python>=5.0.0
+
+# Machine Learning
+scikit-learn>=1.9.0
+ultralytics>=8.4.0  # YOLOv11 (Object Detection - Kelechi)
+
+# 3D Processing (for 3D localization team member)
+open3d>=0.20.0
+
+# Image processing
 pillow>=9.5.0
-opencv-python>=4.7.0
 
-# For result viewing and report generation
-pandas>=2.0.0
+# Data visualization
 seaborn>=0.12.0
+pandas>=2.0.0
 
-# NOT INSTALLED LOCALLY (too heavy for <8GB RAM):
-# - ultralytics (YOLOv11) → Use in Colab only
-# - torch, torchvision → Use in Colab only
-# - roboflow → Use in Colab only
+# ROS data processing (if needed)
+rosbags
 
-# Note: If you need to view model outputs locally,
-# download results from Colab as JSON/CSV/images
+# Note for Kelechi (<8GB RAM):
+# Install only numpy, matplotlib, opencv-python, pillow, seaborn, pandas locally
+# Run ultralytics (YOLOv11) training in Google Colab only

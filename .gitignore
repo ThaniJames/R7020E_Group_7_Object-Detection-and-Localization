@@ -9,6 +9,7 @@ __pycache__/
 .Python
 env/
 venv/
+.venv/
 ENV/
 *.egg-info/
 dist/
@@ -21,6 +22,7 @@ build/
 # Model weights (too large for git)
 models/weights/*.pt
 models/exports/*
+*.pt
 
 # Training results
 results/
@@ -34,6 +36,7 @@ data/test/
 raw/
 __raw/
 *.zip
+Data/
 
 # IDE
 .vscode/
