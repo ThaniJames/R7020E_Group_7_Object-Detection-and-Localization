@@ -1,0 +1,50 @@
+# Environment variables (contains API keys)
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+
+# Model weights (too large for git)
+models/weights/*.pt
+models/exports/*
+
+# Training results
+results/
+runs/
+fire_extinguisher_detection/
+
+# Dataset (too large)
+data/train/
+data/val/
+data/test/
+raw/
+__raw/
+*.zip
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+._*
+
+# Temporary files
+*.tmp
+*.log

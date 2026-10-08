@@ -1,0 +1,20 @@
+# Minimal local dependencies for <8GB RAM
+# All training/inference runs in Google Colab
+
+# For local code editing and light visualization only
+numpy>=1.24.0
+matplotlib>=3.7.0
+pillow>=9.5.0
+opencv-python>=4.7.0
+
+# For result viewing and report generation
+pandas>=2.0.0
+seaborn>=0.12.0
+
+# NOT INSTALLED LOCALLY (too heavy for <8GB RAM):
+# - ultralytics (YOLOv11) → Use in Colab only
+# - torch, torchvision → Use in Colab only
+# - roboflow → Use in Colab only
+
+# Note: If you need to view model outputs locally,
+# download results from Colab as JSON/CSV/images
