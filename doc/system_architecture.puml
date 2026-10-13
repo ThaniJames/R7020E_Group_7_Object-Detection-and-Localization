@@ -1,0 +1,82 @@
+@startuml system_architecture
+!pragma layout smetana
+title Fire extinguisher detection, decoy rejection and 3D localization: system architecture
+
+top to bottom direction
+skinparam shadowing false
+skinparam defaultFontSize 12
+skinparam rectangle {
+  BackgroundColor #F5F7FA
+  BorderColor #4A6FA5
+  RoundCorner 8
+}
+skinparam package {
+  BorderColor #888888
+  FontStyle bold
+}
+skinparam note {
+  BackgroundColor #FFF8E1
+  BorderColor #C9A227
+}
+skinparam ArrowColor #4A6FA5
+
+package "OFFLINE: detector training (once)" {
+  rectangle "Roboflow FireExtinguisher v2\n2,934 train / 328 valid images\n1 class, CC BY 4.0" as rf
+  rectangle "Augmentation during training\nflip, rotation, HSV, scale,\nmosaic, mixup" as aug
+  rectangle "YOLO11 fine-tuning\n(pretrained COCO weights)" as train
+  rectangle "Trained weights\nbest.pt" as weights
+  rf --> aug
+  aug --> train
+  train --> weights
+}
+
+package "ONLINE: every frame" {
+  rectangle "Orbbec stereo depth camera\ncolour PNG 640x400\ndepth PNG uint16 mm (aligned to colour)\ncalibration K" as cam
+  rectangle "Frame pairing\ncolour <-> nearest depth\n(time gap <= 50 ms)" as pair
+  rectangle "Depth pre-processing\nmm -> metres, 0 = missing" as depthpre
+  rectangle "YOLO11 detector\nboxes (x1, y1, x2, y2) + confidence\nconf >= 0.1" as det
+  rectangle "Object pixels per box\ndepth histogram: keep pixels near\nthe tallest bar (-0.05 / +0.15 m)" as objpix
+  rectangle "Real vs decoy filter\ndepth cues: flatness, curvature,\ndepth jump to background\n-> real score 0..1" as decoy
+  rectangle "3D localization\nfront = 5th percentile depth\ncentre = front + radius (0.067 m)\nX = (u - cx) Z / fx,  Y = (v - cy) Z / fy" as loc
+  rectangle "Floor plane (RANSAC)\nheight above floor" as floor
+  rectangle "Tracking + vote over frames\nmatch: < 120 px and < 0.5 m change\nreal if mean real score >= threshold" as track
+  rectangle "OUTPUT\naccepted real extinguishers\nX, Y, Z (m) + height above floor" as out
+
+  cam --> pair
+  pair --> det : colour
+  pair --> depthpre : depth
+  weights ..> det : loads
+  det --> objpix : boxes
+  depthpre --> objpix
+  objpix --> decoy
+  objpix --> loc
+  depthpre --> floor
+  decoy --> track : real score
+  loc --> track : X, Y, Z
+  floor --> track : height
+  track --> out
+}
+
+package "EVALUATION (eval recording, 99 paired frames)" {
+  rectangle "Reference labels\nreal / decoy boxes" as labels
+  rectangle "Baseline\nevery detection accepted as real\n3D = median depth of the box" as base
+  rectangle "Metrics (same data, same rules)\nreal-object TPR (target >= 0.75)\ndecoy FPR (target <= 0.15)\nraw counts: TP, FN, decoy FP\nmatch: box centre inside reference box" as metrics
+  labels --> metrics
+  base --> metrics
+}
+
+det ..> base : same boxes
+out --> metrics : final system
+
+note right of cam
+  3D coordinate system:
+  colour camera optical frame
+  X right, Y down, Z forward, metres
+end note
+
+note right of decoy
+  Threshold chosen on the test
+  recording, then fixed for eval
+end note
+
+@enduml

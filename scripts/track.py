@@ -5,6 +5,7 @@ SPLIT = "test"
 MAX_DIST = 120
 MAX_GAP = 2
 
+#TODO: Will update the file once Task 1 is ready
 dets = json.load(open(f"outputs/detections_{SPLIT}.json"))
 stamps = sorted({d["stamp"] for d in dets})
 
@@ -35,6 +36,7 @@ for frame_no, stamp in enumerate(stamps):
         used.add(best["id"])
         d["track"] = best["id"]
 
+#TODO: Update after Task 2
 for t in tracks:
     if len(t["dets"]) < 3:
         continue
