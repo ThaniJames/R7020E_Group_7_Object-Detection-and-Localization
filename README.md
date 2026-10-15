@@ -2,7 +2,7 @@
 
 Team: 3 members  
 Deadline: October 30, 2026, 11:59pm  
-Your Role: Object detection (bounding boxes), YOLO training, baseline, evaluation
+Role: Object detection (bounding boxes), YOLO training, baseline, evaluation
 
 ---
 
@@ -84,7 +84,7 @@ Phase 4: Evaluation** (Colab - light batching for low RAM)
 
 ---
 
-## **Project Structure**
+## Project Structure**
 
 ```
 Project_work/
@@ -123,7 +123,7 @@ Project_work/
 
 ---
 
-## **Hardware Constraints**
+## Hardware Constraints**
 
 **Local Machine:** <8GB RAM, macOS  
 **Solution:** Use Google Colab for ALL heavy computation
@@ -148,7 +148,7 @@ Project_work/
 
 ---
 
-## **Next Steps**
+## Next Steps**
 
 1. ✅ Project structure created
 2. ⬜ Access Roboflow dataset, apply augmentation
@@ -172,13 +172,13 @@ Project_work/
 
 ---
 
-## **Team Contributions**
+## Team Contributions**
 
 | Member | Responsibilities |
-|--------|------------------|
-| **Kelechi (me)** | Object detection, YOLO training, baseline, evaluation script |
-| **Teammate 2** | Real vs decoy filtering (cues: flatness, curvature, depth, IR texture) |
-| **Teammate 3** | 3D localization (depth-to-3D, tracking, coordinates, accuracy check) |.
+|--------|----------------|
+| Kelechi (me) | Object detection, YOLO training, baseline, evaluation script |
+| Teammate 2   | Real vs decoy filtering (cues: flatness, curvature, depth, IR texture) |
+| Teammate 3 | 3D localization (depth-to-3D, tracking, coordinates, accuracy check) |.
 
 ---
 
