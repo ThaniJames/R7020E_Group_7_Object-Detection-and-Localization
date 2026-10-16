@@ -51,3 +51,8 @@ Data/
 # Temporary files
 *.tmp
 *.log
+
+# Personal notes (not for team repo)
+DEFENSE_NOTES.md
+TECHNICAL_REPORT.md
+PROJECT_SUMMARY.md
