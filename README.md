@@ -1,12 +1,12 @@
 # Project 1: Fire Extinguisher Detection and Localization
 
-**Team:** 3 members  
-**Deadline:** October 30, 2026, 11:59pm  
-**Your Role:** Object detection (bounding boxes), YOLO training, baseline, evaluation
+Team: 3 members  
+Deadline: October 30, 2026, 11:59pm  
+Role: Object detection (bounding boxes), YOLO training, baseline, evaluation
 
 ---
 
-## **Project Overview**
+Project Overview**
 
 Build a system that:
 1. Detects fire extinguishers using **YOLOv11**
@@ -28,13 +28,13 @@ Build a system that:
 | **Real-object TPR** | ≥ 0.75 | True Positive Rate for real fire extinguishers |
 | **Decoy FPR** | ≤ 0.15 | False Positive Rate for decoys |
 
-*Detection is correct when bbox center is inside reference bbox*
+Detection is correct when bbox center is inside reference bbox
 
 ---
 
-## **Datasets**
+Datasets**
 
-### 1. Training Data (Roboflow)
+1. Training Data (Roboflow)
 - **Source:** https://universe.roboflow.com/fire-extinguisher/fireextinguisher-z5atr
 - **Forked:** https://app.roboflow.com/kaycee-hn2a6/fireextinguisher-z5atr-6ktlv/train
 - **Use:** Train YOLOv11 model
@@ -49,16 +49,16 @@ Build a system that:
 
 ---
 
-## **Workflow**
+Workflow**
 
-### **Phase 1: Data Preparation** (Roboflow + Colab)
+Phase 1: Data Preparation** (Roboflow + Colab)
 1. Access Roboflow dataset
 2. Apply augmentation (flip, rotate, brightness, etc.)
 3. Export in YOLOv11 format
 4. Upload to Google Drive
 
-### **Phase 2: Model Training** (Google Colab - FREE GPU)
-⚠️ **Local RAM <8GB → ALL training must be in Colab**
+Phase 2: Model Training** (Google Colab - FREE GPU)
+Local RAM <8GB → ALL training must be in Colab
 
 1. Open `notebooks/train_yolov11.ipynb` in Colab
 2. Mount Google Drive
@@ -66,25 +66,25 @@ Build a system that:
 4. Train YOLOv11
 5. Save best weights to `models/weights/best.pt`
 
-### **Phase 3: Baseline Implementation** (Colab)
+Phase 3: Baseline Implementation** (Colab)
 - Detector with **NO decoy filter**
 - Accept all detections as real
 - Use median depth for 3D position
 
-### **Phase 4: Evaluation** (Colab - light batching for low RAM)
+Phase 4: Evaluation** (Colab - light batching for low RAM)
 1. Run trained model on eval dataset
 2. Compare baseline vs final system
 3. Compute TPR, FPR, raw counts (TP, FP, FN)
 4. Generate visualizations
 
-### **Phase 5: Report** (Local)
+  Phase 5: Report** (Local)
 - Create presentation slides (8-12 slides)
 - Write demonstration script
 - Package submission ZIP
 
 ---
 
-## **Project Structure**
+## Project Structure**
 
 ```
 Project_work/
@@ -123,7 +123,7 @@ Project_work/
 
 ---
 
-## **Hardware Constraints**
+## Hardware Constraints**
 
 **Local Machine:** <8GB RAM, macOS  
 **Solution:** Use Google Colab for ALL heavy computation
@@ -148,7 +148,7 @@ Project_work/
 
 ---
 
-## **Next Steps**
+## Next Steps**
 
 1. ✅ Project structure created
 2. ⬜ Access Roboflow dataset, apply augmentation
@@ -172,17 +172,13 @@ Project_work/
 
 ---
 
-## **Team Contributions**
+## Team Contributions**
 
 | Member | Responsibilities |
-|--------|------------------|
-| **Kelechi (You)** | Object detection, YOLO training, baseline, evaluation script |
-| **Teammate 2** | Real vs decoy filtering (cues: flatness, curvature, depth, IR texture) |
-| **Teammate 3** | 3D localization (depth-to-3D, tracking, coordinates, accuracy check) |
-
-**Note:** You must understand the complete system for oral examination.
+|--------|----------------|
+| Kelechi (me) | Object detection, YOLO training, baseline, evaluation script |
+| Teammate 2   | Real vs decoy filtering (cues: flatness, curvature, depth, IR texture) |
+| Teammate 3 | 3D localization (depth-to-3D, tracking, coordinates, accuracy check) |.
 
 ---
 
-**GitHub:** kelechiezekwe  
-**Due:** October 30, 11:59pm
