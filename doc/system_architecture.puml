@@ -22,7 +22,7 @@ skinparam ArrowColor #4A6FA5
 
 package "OFFLINE: detector training (once)" {
   rectangle "Roboflow FireExtinguisher v2\n2,934 train / 328 valid images\n1 class, CC BY 4.0" as rf
-  rectangle "Augmentation during training\nflip, rotation, HSV, scale,\nmosaic, mixup" as aug
+  rectangle "Augmentation during training\nflip, HSV, scale, translate,\nmosaic (Ultralytics defaults)" as aug
   rectangle "YOLO11 fine-tuning\n(pretrained COCO weights)" as train
   rectangle "Trained weights\nbest.pt" as weights
   rf --> aug
@@ -36,11 +36,11 @@ package "ONLINE: every frame" {
   rectangle "Depth pre-processing\nmm -> metres, 0 = missing" as depthpre
   rectangle "YOLO11 detector\nboxes (x1, y1, x2, y2) + confidence\nconf >= 0.1" as det
   rectangle "Object pixels per box\ndepth histogram: keep pixels near\nthe tallest bar (-0.05 / +0.15 m)" as objpix
-  rectangle "Real vs decoy filter\ndepth cues: flatness, curvature,\ndepth jump to background\n-> real score 0..1" as decoy
+  rectangle "Real vs decoy filter (Task 2)\nbox height (m) >= 0.56\nAND ring around the box >= 19 % further\n-> real (1) / decoy (0)" as decoy
   rectangle "3D localization\nfront = 5th percentile depth\ncentre = front + radius (0.067 m)\nX = (u - cx) Z / fx,  Y = (v - cy) Z / fy" as loc
-  rectangle "Floor plane (RANSAC)\nheight above floor" as floor
-  rectangle "Tracking + vote over frames\nmatch: < 120 px and < 0.5 m change\nreal if mean real score >= threshold" as track
-  rectangle "OUTPUT\naccepted real extinguishers\nX, Y, Z (m) + height above floor" as out
+  rectangle "Floor plane (RANSAC)\nheight above floor (3D check)" as floor
+  rectangle "Tracking (extension)\nkeeps a confirmed real object\nthrough 1-2 rejected frames\nmatch: <= 80 px, similar box height" as track
+  rectangle "OUTPUT\naccepted real extinguishers\nX, Y, Z (m), camera frame" as out
 
   cam --> pair
   pair --> det : colour
@@ -48,25 +48,26 @@ package "ONLINE: every frame" {
   weights ..> det : loads
   det --> objpix : boxes
   depthpre --> objpix
-  objpix --> decoy
+  det --> decoy : boxes
+  depthpre --> decoy
   objpix --> loc
   depthpre --> floor
-  decoy --> track : real score
+  decoy --> track : real / decoy
   loc --> track : X, Y, Z
-  floor --> track : height
   track --> out
 }
 
-package "EVALUATION (eval recording, 99 paired frames)" {
+package "EVALUATION (test recording, 67 paired frames, run once)" {
   rectangle "Reference labels\nreal / decoy boxes" as labels
   rectangle "Baseline\nevery detection accepted as real\n3D = median depth of the box" as base
-  rectangle "Metrics (same data, same rules)\nreal-object TPR (target >= 0.75)\ndecoy FPR (target <= 0.15)\nraw counts: TP, FN, decoy FP\nmatch: box centre inside reference box" as metrics
+  rectangle "Metrics (same data, same rules)\nreal-object TPR (target >= 0.75)\ndecoy FPR (target <= 0.15)\nraw counts: TP, FN, decoy FP\nmatch: box centre inside reference box\n3D check: height above floor" as metrics
   labels --> metrics
   base --> metrics
 }
 
 det ..> base : same boxes
 out --> metrics : final system
+floor ..> metrics : height
 
 note right of cam
   3D coordinate system:
@@ -75,8 +76,9 @@ note right of cam
 end note
 
 note right of decoy
-  Threshold chosen on the test
-  recording, then fixed for eval
+  Thresholds fitted on the eval
+  recording (development), frozen,
+  then run once on test
 end note
 
 @enduml

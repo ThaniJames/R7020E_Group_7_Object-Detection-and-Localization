@@ -1,0 +1,114 @@
+{
+  "method": "projected_box_height AND relative_ring_depth",
+  "decision_rule": "Accept if both features are finite and each is at least its fitted threshold",
+  "selection": "Training frames only: minimize accepted decoy objects subject to real TPR >= 0.75; then maximize accepted real objects. Remaining ties choose the lowest height then contrast threshold",
+  "height_threshold_m": 0.5553721307725596,
+  "relative_depth_threshold": 0.19218751450161214,
+  "folds": [
+    {
+      "fold": 1,
+      "height_threshold_m": 0.5553721307725596,
+      "relative_depth_threshold": 0.19218751450161214,
+      "baseline": {
+        "real_accepted": 33,
+        "real_total": 33,
+        "real_missed": 0,
+        "decoys_accepted": 29,
+        "decoy_total": 53,
+        "tpr": 1.0,
+        "fpr": 0.5471698113207547
+      },
+      "held_out": {
+        "real_accepted": 31,
+        "real_total": 33,
+        "real_missed": 2,
+        "decoys_accepted": 0,
+        "decoy_total": 53,
+        "tpr": 0.9393939393939394,
+        "fpr": 0.0
+      }
+    },
+    {
+      "fold": 2,
+      "height_threshold_m": 0.48474853101441984,
+      "relative_depth_threshold": 0.19218751450161214,
+      "baseline": {
+        "real_accepted": 33,
+        "real_total": 33,
+        "real_missed": 0,
+        "decoys_accepted": 34,
+        "decoy_total": 55,
+        "tpr": 1.0,
+        "fpr": 0.6181818181818182
+      },
+      "held_out": {
+        "real_accepted": 33,
+        "real_total": 33,
+        "real_missed": 0,
+        "decoys_accepted": 1,
+        "decoy_total": 55,
+        "tpr": 1.0,
+        "fpr": 0.01818181818181818
+      }
+    },
+    {
+      "fold": 3,
+      "height_threshold_m": 0.5566298354557823,
+      "relative_depth_threshold": 0.1353837416410109,
+      "baseline": {
+        "real_accepted": 33,
+        "real_total": 33,
+        "real_missed": 0,
+        "decoys_accepted": 30,
+        "decoy_total": 52,
+        "tpr": 1.0,
+        "fpr": 0.5769230769230769
+      },
+      "held_out": {
+        "real_accepted": 33,
+        "real_total": 33,
+        "real_missed": 0,
+        "decoys_accepted": 1,
+        "decoy_total": 52,
+        "tpr": 1.0,
+        "fpr": 0.019230769230769232
+      }
+    }
+  ],
+  "out_of_fold": {
+    "real_accepted": 97,
+    "real_total": 99,
+    "real_missed": 2,
+    "decoys_accepted": 2,
+    "decoy_total": 160,
+    "tpr": 0.9797979797979798,
+    "fpr": 0.0125
+  },
+  "accept_all_baseline": {
+    "real_accepted": 99,
+    "real_total": 99,
+    "real_missed": 0,
+    "decoys_accepted": 93,
+    "decoy_total": 160,
+    "tpr": 1.0,
+    "fpr": 0.58125
+  },
+  "fit_on_all_development": {
+    "real_accepted": 97,
+    "real_total": 99,
+    "real_missed": 2,
+    "decoys_accepted": 0,
+    "decoy_total": 160,
+    "tpr": 0.9797979797979798,
+    "fpr": 0.0
+  },
+  "candidate_count": 263,
+  "numpy_version": "2.4.6",
+  "python_version": "3.11.16",
+  "source_sha256": {
+    "detections_xyz_eval.json": "b2706300f896d8154b5152c5c5e6e0f1fa0621f8815a543d3ce57a4a2d84bf04",
+    "gt_eval.json": "59ec1289b694dd266f74a0cc6316b828eff8ab3236313d5521289c9e643603b0",
+    "eval_candidate_depth_cues.csv": "dd9a8c4a9b9a212feb6842c93b3a5cf220148a591585397d70b35ffc3fdf2b34",
+    "eval_temporal_folds.csv": "d1b4162b224f55cbdfb0f0afb0d94f867a777eb508d38afe069dccb59237bbaf"
+  }
+}

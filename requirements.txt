@@ -1,27 +1,8 @@
-# Team Requirements - Fire Extinguisher Detection Project
-# Combined dependencies for all team members
-
-# Core numerical and visualization
-numpy>=2.4.0
-matplotlib>=3.7.0
-opencv-python>=5.0.0
-
-# Machine Learning
-scikit-learn>=1.9.0
-ultralytics>=8.4.0  # YOLOv11 (Object Detection - Kelechi)
-
-# 3D Processing (for 3D localization team member)
-open3d>=0.20.0
-
-# Image processing
-pillow>=9.5.0
-
-# Data visualization
-seaborn>=0.12.0
-pandas>=2.0.0
-
-# ROS data processing (if needed)
-rosbags
-
-# Note: Heavy ML libraries (ultralytics, torch) can be run in Google Colab
-# to save local resources. Install only what you need for your component.
+# Python 3.11
+numpy==2.4.6
+opencv-python==5.0.0
+open3d==0.20.0
+ultralytics==8.4.171
+torch==2.14.1
+matplotlib==3.11.2
+pillow==12.3.0

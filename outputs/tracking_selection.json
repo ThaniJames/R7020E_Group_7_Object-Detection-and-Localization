@@ -1,0 +1,115 @@
+{
+ "filter_only": {
+  "real": 99,
+  "tp": 97,
+  "fn": 2,
+  "tpr": 0.98,
+  "decoy": 160,
+  "fp": 0,
+  "tn": 160,
+  "fpr": 0.0,
+  "accepted_background": 0
+ },
+ "grid": [
+  {
+   "max_dist": 80,
+   "max_gap": 1,
+   "tp": 98,
+   "fp": 0,
+   "background": 0,
+   "rescued_real": 1,
+   "extra_decoys": 0,
+   "extra_background": 0
+  },
+  {
+   "max_dist": 80,
+   "max_gap": 2,
+   "tp": 99,
+   "fp": 0,
+   "background": 0,
+   "rescued_real": 2,
+   "extra_decoys": 0,
+   "extra_background": 0
+  },
+  {
+   "max_dist": 80,
+   "max_gap": 3,
+   "tp": 99,
+   "fp": 0,
+   "background": 0,
+   "rescued_real": 2,
+   "extra_decoys": 0,
+   "extra_background": 0
+  },
+  {
+   "max_dist": 120,
+   "max_gap": 1,
+   "tp": 98,
+   "fp": 0,
+   "background": 0,
+   "rescued_real": 1,
+   "extra_decoys": 0,
+   "extra_background": 0
+  },
+  {
+   "max_dist": 120,
+   "max_gap": 2,
+   "tp": 99,
+   "fp": 0,
+   "background": 0,
+   "rescued_real": 2,
+   "extra_decoys": 0,
+   "extra_background": 0
+  },
+  {
+   "max_dist": 120,
+   "max_gap": 3,
+   "tp": 99,
+   "fp": 0,
+   "background": 0,
+   "rescued_real": 2,
+   "extra_decoys": 0,
+   "extra_background": 0
+  },
+  {
+   "max_dist": 160,
+   "max_gap": 1,
+   "tp": 98,
+   "fp": 0,
+   "background": 0,
+   "rescued_real": 1,
+   "extra_decoys": 0,
+   "extra_background": 0
+  },
+  {
+   "max_dist": 160,
+   "max_gap": 2,
+   "tp": 99,
+   "fp": 0,
+   "background": 0,
+   "rescued_real": 2,
+   "extra_decoys": 0,
+   "extra_background": 0
+  },
+  {
+   "max_dist": 160,
+   "max_gap": 3,
+   "tp": 99,
+   "fp": 0,
+   "background": 0,
+   "rescued_real": 2,
+   "extra_decoys": 0,
+   "extra_background": 0
+  }
+ ],
+ "choice": {
+  "max_dist": 80,
+  "max_gap": 2,
+  "tp": 99,
+  "fp": 0,
+  "background": 0,
+  "rescued_real": 2,
+  "extra_decoys": 0,
+  "extra_background": 0
+ }
+}

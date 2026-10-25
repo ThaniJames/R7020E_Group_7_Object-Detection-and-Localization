@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-path = "Data/OneDrive_1_9-24-2026/raw/eval/camera_depth_image_raw/camera_depth_image_1727164272306629143.png"
+path = "data/Project_1/raw/eval/camera_depth_image_raw/camera_depth_image_1727164272306629143.png"
 depth = cv2.imread(path, cv2.IMREAD_UNCHANGED)
 
 box = depth[150:400, 190:330] 

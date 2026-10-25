@@ -2,12 +2,13 @@
 
 from dataclasses import dataclass
 from pathlib import Path
+import os
 import re
 
 import numpy as np
 import cv2
 
-DATA_ROOT = Path(__file__).resolve().parents[1] / "Data" / "OneDrive_1_9-24-2026" / "raw"
+DATA_ROOT = Path(__file__).resolve().parents[1] / "data" / "Project_1" / "raw"
 DEPTH_SCALE = 0.001  # depth PNG stores millimetres
 
 
@@ -62,6 +63,8 @@ class FramePair:
 
 # Match every colour frame to the nearest-in-time depth frame; drop pairs further apart than max_gap_ms.
 def pair_frames(split: str, max_gap_ms: float = 50.0):
+    if split == "test" and os.environ.get("FINAL_TEST") != "1":
+        raise RuntimeError("test recording is locked: only scripts/final_test.py may use it")
     colors = sorted((DATA_ROOT / split / "camera_color_image_raw").glob("*.png"), key=_stamp)
     depths = sorted((DATA_ROOT / split / "camera_depth_image_raw").glob("*.png"), key=_stamp)
     d_stamps = np.array([_stamp(p) for p in depths])
