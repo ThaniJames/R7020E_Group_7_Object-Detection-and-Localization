@@ -1,6 +1,6 @@
 """Extension: temporal tracking that keeps a confirmed real object "real" through short filter failures.
 Designed on the eval recording (development): the filter misses there were 1-2 frame gaps inside runs of
-accepted frames. MAX_DIST and MAX_GAP are chosen on eval only (scripts/select_tracking.py)"""
+accepted frames. MAX_DIST and MAX_GAP are chosen on eval only"""
 import sys, json
 sys.path.insert(0, "src")
 sys.path.insert(0, "scripts")

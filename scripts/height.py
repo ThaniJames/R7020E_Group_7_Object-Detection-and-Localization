@@ -23,7 +23,6 @@ tracks = {}
 for d in dets:
     tracks.setdefault(d["track"], []).append(d)
     
-#TODO: Update after Task 2
 for tid, ds in sorted(tracks.items()):
     if len(ds) < 3:
         continue

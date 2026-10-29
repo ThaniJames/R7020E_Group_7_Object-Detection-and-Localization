@@ -6,7 +6,7 @@ import json
 import numpy as np
 from ultralytics import YOLO
 from rgbd import pair_frames, load_intrinsics, object_centre, DATA_ROOT
-from extract_depth_cues import extract_cues, read_focal_lengths     # Task 2 filter
+from extract_depth_cues import extract_cues, read_focal_lengths
 
 SPLIT = sys.argv[1] if len(sys.argv) > 1 else "test"
 WEIGHTS = sys.argv[2] if len(sys.argv) > 2 else "models/best.pt"
@@ -24,7 +24,7 @@ def real_score(depth, box):
     return float(h is not None and r is not None and h >= FILTER["height_threshold_m"] and r >= FILTER["relative_depth_threshold"])
 
 
-model(pairs[0].color(), verbose=False)                      # warm-up
+model(pairs[0].color(), verbose=False) 
 
 t = {"detect": [], "filter": [], "3d": []}
 for p in pairs:

@@ -1,8 +1,5 @@
-"""Extension result: final system vs final + tracking, same metric and labels as evaluate.py.
+"""Extension result: final system vs final + tracking, same metric and labels as evaluate.py."""
 
-Input:  labels/gt_{split}.json, outputs/scores_tracked_{split}.json
-Output: outputs/results_tracked_{split}.json
-"""
 import sys, json
 sys.path.insert(0, "src")
 sys.path.insert(0, "scripts")
